@@ -45,8 +45,8 @@ async function sendEnvelopeController (req, res) {
   const accountId = envir.ACCOUNT_ID || qp.account_id || '{account_id}'; 
 
   // Recipient Information:
-  const recipientName = envir.USER_FULLNAME || qp.user_fullname || '{user_fullname}';
-  const recipientEmail = envir.USER_EMAIL || qp.user_email || '{user_email}';
+  const signerName = envir.USER_FULLNAME || qp.user_fullname || '{user_fullname}';
+  const signerEmail = envir.USER_EMAIL || qp.user_email || '{user_email}';
 
   // The document you wish to send. Path is relative to the root directory of this repo.
   const fileName = 'demo_documents/World_Wide_Corp_lorem.pdf';
@@ -85,7 +85,7 @@ async function sendEnvelopeController (req, res) {
   envDef.documents = [doc];
 
   // Create the signer object with the previously provided name / email address
-  const signer = docusign.Signer.constructFromObject({name: recipientName,
+  const signer = docusign.Signer.constructFromObject({name: signerName,
         email: recipientEmail, routingOrder: '1', recipientId: '1'});
 
   // Create the signHere tab to be placed on the envelope
@@ -129,7 +129,8 @@ async function sendEnvelopeController (req, res) {
   // Envelope has been created:
   if (results) {
     res.send (`<h3>Envelope Created!</h3>
-                <p>Results</p><p><pre><code>${JSON.stringify(results, null, 4)}</code></pre></p>`);
+              <p>Signer: ${signerName} &lt;${signerEmail}&gt;</p>
+              <p>Results</p><p><pre><code>${JSON.stringify(results, null, 4)}</code></pre></p>`);
   }
 }
 
