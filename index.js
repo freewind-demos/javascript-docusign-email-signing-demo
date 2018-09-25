@@ -86,7 +86,7 @@ async function sendEnvelopeController (req, res) {
 
   // Create the signer object with the previously provided name / email address
   const signer = docusign.Signer.constructFromObject({name: signerName,
-        email: recipientEmail, routingOrder: '1', recipientId: '1'});
+        email: signerEmail, routingOrder: '1', recipientId: '1'});
 
   // Create the signHere tab to be placed on the envelope
   const signHere = docusign.SignHere.constructFromObject({documentId: '1',
