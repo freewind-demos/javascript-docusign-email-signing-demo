@@ -73,8 +73,8 @@ async function sendEnvelopeController (req, res) {
   envDef.emailBlurb = 'Please sign this document sent from the Node example.'
 
   // Read the file from the document and convert it to a Base64String
-  pdfBytes = fs.readFileSync(path.resolve(__dirname, fileName));
-  pdfBase64 = pdfBytes.toString('base64');
+  const pdfBytes = fs.readFileSync(path.resolve(__dirname, fileName))
+      , pdfBase64 = pdfBytes.toString('base64');
   
   // Create the document request object
   const doc = docusign.Document.constructFromObject({documentBase64: pdfBase64,
