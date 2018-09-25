@@ -67,7 +67,7 @@ async function sendEnvelopeController (req, res) {
 
   // Create the envelope request
   // Start with the request object
-  envDef = new docusign.EnvelopeDefinition();
+  const envDef = new docusign.EnvelopeDefinition();
   //Set the Email Subject line and email message
   envDef.emailSubject = 'Please sign this document sent from the Node example';
   envDef.emailBlurb = 'Please sign this document sent from the Node example.'
@@ -77,7 +77,7 @@ async function sendEnvelopeController (req, res) {
   pdfBase64 = pdfBytes.toString('base64');
   
   // Create the document request object
-  let doc = docusign.Document.constructFromObject({documentBase64: pdfBase64,
+  const doc = docusign.Document.constructFromObject({documentBase64: pdfBase64,
         fileExtension: 'pdf',  // You can send other types of documents too.
         name: 'Sample document', documentId: '1'});
 
@@ -85,11 +85,11 @@ async function sendEnvelopeController (req, res) {
   envDef.documents = [doc];
 
   // Create the signer object with the previously provided name / email address
-  let signer = docusign.Signer.constructFromObject({name: recipientName,
+  const signer = docusign.Signer.constructFromObject({name: recipientName,
         email: recipientEmail, routingOrder: '1', recipientId: '1'});
 
   // Create the signHere tab to be placed on the envelope
-  let signHere = docusign.SignHere.constructFromObject({documentId: '1',
+  const signHere = docusign.SignHere.constructFromObject({documentId: '1',
         pageNumber: '1', recipientId: '1', tabLabel: 'SignHereTab',
         xPosition: '195', yPosition: '147'});
 
