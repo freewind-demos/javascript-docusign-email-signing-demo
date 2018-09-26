@@ -119,7 +119,8 @@ async function sendEnvelopeController (req, res) {
     let body = e.response && e.response.body;
     if (body) {
       // DocuSign API exception
-      res.send (`<h3>API problem</h3><p>Status code ${e.response.status}</p>
+      res.send (`<html lang="en"><body>
+                  <h3>API problem</h3><p>Status code ${e.response.status}</p>
                   <p>Error message:</p><p><pre><code>${JSON.stringify(body, null, 4)}</code></pre></p>`);
     } else {
       // Not a DocuSign exception
@@ -128,9 +129,10 @@ async function sendEnvelopeController (req, res) {
   }
   // Envelope has been created:
   if (results) {
-    res.send (`<h3>Envelope Created!</h3>
-              <p>Signer: ${signerName} &lt;${signerEmail}&gt;</p>
-              <p>Results</p><p><pre><code>${JSON.stringify(results, null, 4)}</code></pre></p>`);
+    res.send (`<html lang="en"><body>
+                <h3>Envelope Created!</h3>
+                <p>Signer: ${signerName} &lt;${signerEmail}&gt;</p>
+                <p>Results</p><p><pre><code>${JSON.stringify(results, null, 4)}</code></pre></p>`);
   }
 }
 
