@@ -1,6 +1,6 @@
 # Setup for Glitch
 
-To run the example on Glitch, configure the `.env` file with an access token, account id, and the signer's name and email.
+To run the example on Glitch, configure the project's `.env` file with an access token, account id, and the signer's name and email. If the .env file doesn't exist, create it via the Glitch editor.
 
 When you're finished, your `.env` file will look like:
 
