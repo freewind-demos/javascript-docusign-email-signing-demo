@@ -2,7 +2,7 @@
 
 This quick start example shows you how to send a PDF to a signer via email.
 
-See the [SETUP.md]()
+See the [SETUP.md](https://github.com/docusign/qs-02-node-send-envelope/blob/master/SETUP.md)
 file for setup steps.
 
 For more information, see the 
