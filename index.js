@@ -38,15 +38,15 @@ async function sendEnvelopeController (req, res) {
   // or environment variables.
 
   // Obtain an OAuth token from https://developers.hqtest.tst/oauth-token-generator
-  const accessToken = envir.ACCESS_TOKEN || qp.ACCESS_TOKEN || '{access_token}';
+  const accessToken = envir.ACCESS_TOKEN || qp.ACCESS_TOKEN || '{ACCESS_TOKEN}';
 
   // Obtain your accountId from demo.docusign.com -- the account id is shown in the drop down on the
   // upper right corner of the screen by your picture or the default picture. 
-  const accountId = envir.ACCOUNT_ID || qp.ACCOUNT_ID || '{account_id}'; 
+  const accountId = envir.ACCOUNT_ID || qp.ACCOUNT_ID || '{ACCOUNT_ID}'; 
 
   // Recipient Information:
-  const signerName = envir.USER_FULLNAME || qp.USER_FULLNAME || '{user_fullname}';
-  const signerEmail = envir.USER_EMAIL || qp.USER_EMAIL || '{user_email}';
+  const signerName = envir.USER_FULLNAME || qp.USER_FULLNAME || '{USER_FULLNAME}';
+  const signerEmail = envir.USER_EMAIL || qp.USER_EMAIL || '{USER_EMAIL}';
 
   // The document you wish to send. Path is relative to the root directory of this repo.
   const fileName = 'demo_documents/World_Wide_Corp_lorem.pdf';
