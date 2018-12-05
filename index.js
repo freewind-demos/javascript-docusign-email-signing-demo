@@ -26,7 +26,6 @@ const docusign = require('docusign-esign')
     , path = require('path')
     , fs = require('fs')
     , process = require('process')
-    , {promisify} = require('util') // http://2ality.com/2017/05/util-promisify.html
     , basePath = 'https://demo.docusign.net/restapi'
     , express = require('express')
     , envir = process.env
@@ -104,17 +103,12 @@ async function sendEnvelopeController (req, res) {
   envDef.status = 'sent';
 
   // Send the envelope
-  // The SDK operations are asynchronous, and take callback functions.
-  // However we'd pefer to use promises.
-  // So we create a promise version of the SDK's createEnvelope method.
   let envelopesApi = new docusign.EnvelopesApi()
-      // createEnvelopePromise returns a promise with the results:
-    , createEnvelopePromise = promisify(envelopesApi.createEnvelope).bind(envelopesApi)
     , results
     ;
 
   try {
-    results = await createEnvelopePromise(accountId, {'envelopeDefinition': envDef})
+    results = await envelopesApi.createEnvelope(accountId, {'envelopeDefinition': envDef})
   } catch  (e) {
     let body = e.response && e.response.body;
     if (body) {
