@@ -1,40 +1,39 @@
-# DocuSign Quick Start for Node: Send an Envelope via email
+JavaScript DocuSign Email Signing Demo
+=======================================
 
-This quick start example shows you how to send a PDF to a signer via email.
+原来的文档在这里：<./ori-README.md>
 
-This example does not include authentication. For full Node.js examples, see:
-
-* [Node OAuth Authorization Code Grant example launcher](https://github.com/docusign/eg-03-node-auth-code-grant)
-* [Node OAuth JWT Grant example launcher](https://github.com/docusign/eg-01-node-jwt)
-
-## Installation and Setup
-See the
-[SETUP.md](https://github.com/docusign/qs-02-node-send-envelope/blob/master/SETUP.md)
-file for installation and setup steps.
-
-## Running the example
-````
-npm start
-or
+```
+npm install
 node index.js
-````
+```
 
-### Run and modify the example live with glitch.com
+将会启动一个express服务器，可以访问http://localhost:3000
 
-No need to install the example, you can run it live via
-the free glitch.com service and modify your copy of it.
-You will need to configure
-the example on glitch.com using the .env file. See the
-glitch_setup.md file.
+但我们需要以下四个参数：
 
-[Open the project on glitch](https://glitch.com/edit/#!/remix/docusign-send-envelope)
+- ACCESS_TOKEN: 登录到<https://developers.docusign.com/oauth-token-generator>可以生成一个有效期为8个小时的试用token
+- ACCOUNT_ID: 开发者的docusign的accountId
 
-## Support, Contributions, License
+  ![accountId](./images/account_id.png)
 
-Submit support questions to [StackOverflow](https://stackoverflow.com). Use tag `docusignapi`.
+- USER_FULLNAME: 签名者的名字
+- USER_EMAIL: 签名者的Email。将把邮件发送到这个Email
 
-Contributions via Pull Requests are appreciated.
-All contributions must use the MIT License.
+准备好这些信息之后，可以打开浏览器，访问：
 
-This repository uses the MIT license, see the
-LICENSE file.
+```
+http://localhost:3000/?ACCOUNT_ID=8641109&USER_FULLNAME=Freewind&USER_EMAIL=nowindlee@gmail.com&ACCESS_TOKEN=<yourToken>
+```
+
+如果成功的话，将会看到：
+
+![1-created-envelope.png](./images/1-created-envelope.png)
+
+签名者的邮箱会收到一封邮件：
+
+![2-received-mail.png](./images/2-received-mail.png)
+
+点击REVIEW DOCUMENT后，会打开该文档签名：
+
+![3-open-docusign.png](./images/3-open-docusign.png)
